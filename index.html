@@ -1,8 +1,60 @@
-<h1> ~ Math Experiments </h1>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+		<title>XKCD world render by @maraoz</title>
+		<script type="text/javascript">
+<!--
 
-<ul>
-    <li><a href="flowers.html">flowers</a></li>
-    <li><a href="xkcd-world.html">xkcd-world</a></li>
 
 
-</ul>
+function escribirImagenes() {
+	var c = document.getElementById("contenido");
+	//var url = 'file:///C:/Users/Manu/Desktop/Torrent/images/';
+	var url = 'http://imgs.xkcd.com/clickdrag/';
+	var DEFAULT_SIZE = window.innerWidth / 81;
+	var size = parseInt(prompt("Enter tile side size in pixels (default attempts to fit screen)", DEFAULT_SIZE));
+
+	if (!size) {
+		size = DEFAULT_SIZE;
+	}
+
+	// sky
+	for (var j = 13; j > 0; j--) {
+		for (var i = 33; i > 0; i--) {
+			c.innerHTML += '<img style="width: '+size+'px; height: '+size+'px;" src="'+url+j+'n'+i+'w.png" />';
+		}
+		for (var i = 1; i < 49; i++) {
+			c.innerHTML += '<img style="width: '+size+'px; height: '+size+'px;" src="'+url+j+'n'+i+'e.png" />';
+		}
+		c.innerHTML += '<br />';
+	}
+	// underground
+
+	for (var j = 1; j < 20; j++) {
+		for (var i = 33; i > 0; i--) {
+			c.innerHTML += '<img style="width: '+size+'px; height: '+size+'px;" src="'+url+j+'s'+i+'w.png" />';
+		}
+		for (var i = 1; i < 49; i++) {
+			c.innerHTML += '<img style="width: '+size+'px; height: '+size+'px;" src="'+url+j+'s'+i+'e.png" />';
+		}
+		c.innerHTML += '<br />';
+	}	
+
+	c.style.cssText = 'overflow-y: scroll; overflow: auto; witdh: '+(size*100)+'px;';
+	c.style.width = (size*82) + 'px';
+
+	return true;
+}
+window.onload = function () {
+
+	escribirImagenes();
+	return true;
+}
+//-->
+		</script>
+	</head>
+
+	<body>
+		<div id="contenido"></div>
+	</body>
+</html>
